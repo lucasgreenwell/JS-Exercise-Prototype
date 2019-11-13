@@ -79,17 +79,17 @@ function Car(model, milesPerGallon) {
 Car.prototype.fill = function (gas){
   this.tank += gas;
 }
-// Car.prototype.drive = function (miles){
-//   let gals = miles / this.milesPerGallon;
-//   if (this.tank - miles > 0){
-//     this.odometer += miles;
-//     this.tank -= gals;
-//   } else {
-//       this.tank = 0;
-//       let possMiles = 
-//       return `I ran out of fuel at ${this.odometer} miles`;
-//   }
-// }
+Car.prototype.drive = function (miles){
+  let possibleMiles = this.tank * this.milesPerGallon;
+  if (possibleMiles >= miles){
+    this.odometer += miles;
+    this.tank -= miles / this.milesPerGallon;
+  } else {
+    this.odometer += possibleMiles;
+    this.tank = 0;
+    return `I ran out of fuel at ${this.odometer} miles!`;
+  }
+}
 
 /*
   TASK 3
@@ -112,10 +112,10 @@ Baby.prototype.play = function (){
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global binding refers to the global object which will be the window object usually
+  2. implicit binding happens inside of an obect and refers to the object itself
+  3. new binding happens when a constructor function is called and refers to the output of the function
+  4. explicit binding also happens when a constructor is called and is a way to override the implicit binding that happens within the function
 */
 
 
